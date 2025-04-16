@@ -1,29 +1,34 @@
-import {BOOKS} from '../fixtures/dev-books.js';
-import {by} from '../utils/sort-by.js';
-import {SECOND} from '../utils/time.js';
-import {timeout} from '../utils/timeout.js';
+import { loadBooks } from "../fixtures/books-loader.js";
+import { by } from "../utils/sort-by.js";
+import { SECOND } from "../utils/time.js";
+import { timeout } from "../utils/timeout.js";
 
 class BookStore {
   #books;
 
   constructor(books) {
-    this.#books = books.map((book, index) => ({id: index, ...book}));
+    this.#books = books.map((book, index) => ({ id: index, ...book }));
   }
 
-  async list({offset, limit, sort, order, search} = {}) {
+  static async create() {
+    const BOOKS = await loadBooks();
+    return new BookStore(BOOKS);
+  }
+
+  async list({ offset, limit, sort, order, search } = {}) {
     await timeout(1 * SECOND);
 
     offset ||= 0;
     offset = +offset;
     limit ||= 100;
     limit = +limit;
-    sort ||= 'id';
-    search ||= '.+';
+    sort ||= "id";
+    search ||= ".+";
 
-    const regexp = new RegExp(search, 'i');
+    const regexp = new RegExp(search, "i");
 
     return this.#books
-      .filter(({title}) => regexp.test(title))
+      .filter(({ title }) => regexp.test(title))
       .slice(offset, offset + limit)
       .sort(by(sort, order));
   }
