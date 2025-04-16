@@ -63,8 +63,6 @@ test.skip("can search for a book", async ({ page }) => {
 
   await page.waitForTimeout(10000);
 
-  await page.screenshot({ path: "screenshot.png" });
-
   const bookImage = await page.locator(
     'img[src="https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1320399351i/1885._SY75_.jpg"]'
   );
