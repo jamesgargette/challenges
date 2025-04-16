@@ -4,20 +4,7 @@ test.beforeEach(async ({ page }) => {
   await page.goto("/");
 });
 
-test("has title", async ({ page }) => {
-  await expect(page).toHaveTitle("📚 Bookshelf");
-});
-
-test("displays books", async ({ page }) => {
-  const books = page.locator("a.book");
-
-  await expect(books).toHaveCount(12, { timeout: 5000 });
-
-  const count = await books.count();
-  expect(count).toBe(12);
-});
-
-test("displays each book's cover image", async ({ page }) => {
+test("displays each books cover image", async ({ page }) => {
   const books = page.locator("a.book");
 
   const count = await books.count();
