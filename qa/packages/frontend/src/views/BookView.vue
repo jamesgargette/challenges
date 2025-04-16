@@ -1,9 +1,9 @@
 <script setup>
-import {ref} from 'vue';
-import {useBookStore} from '@/stores/books.js';
-import Loader from '@/components/Loader.vue';
-import {useRoute} from 'vue-router'
-import BookCover from '@/components/BookCover.vue';
+import { ref } from "vue";
+import { useBookStore } from "@/stores/books.js";
+import Loader from "@/components/Loader.vue";
+import { useRoute } from "vue-router";
+import BookCover from "@/components/BookCover.vue";
 
 const book = ref(null);
 const store = useBookStore();
@@ -20,28 +20,33 @@ async function fetchBook() {
   <div class="book">
     <Loader v-if="!book" />
     <section v-else>
-      <BookCover
-        :book="book"
-        class="book-cover"
-      />
+      <BookCover :book="book" class="book-cover" />
       <div>
-        <h1>
+        <h1 class="text">
           {{ book.title }}
         </h1>
-        <h2>
+        <h2 class="text">
           <em>
             {{ book.author }}
           </em>
         </h2>
-        <div>
-          User rating: {{ book.rating }} / 5
-        </div>
+        <div class="text">User rating: {{ book.rating }} / 5</div>
       </div>
     </section>
   </div>
 </template>
 
 <style scoped>
+.text {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin: 1rem 0 0rem 0;
+  text-align: left;
+  padding-left: 0.5rem;
+  color: aliceblue;
+}
+
 section {
   display: flex;
   flex-wrap: wrap;

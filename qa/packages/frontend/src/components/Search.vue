@@ -1,5 +1,5 @@
 <script setup>
-import {computed, defineModel, ref} from 'vue';
+import { computed, defineModel, ref } from "vue";
 
 const model = defineModel();
 const internal = ref(model.value);
@@ -24,9 +24,7 @@ const value = computed({
       'was-validated': invalid,
     }"
   >
-    <label
-      class="form-label"
-    >
+    <label class="form-label">
       Search
       <input
         is="regexp-input"
@@ -34,10 +32,9 @@ const value = computed({
         class="form-control"
         v-model="value"
         ref="input"
-      >
-      <div class="invalid-feedback">
-        Invalid RegExp
-      </div>
+        placeholder="Search by title or author......"
+      />
+      <div class="invalid-feedback">Invalid RegExp</div>
     </label>
   </div>
 </template>
@@ -45,5 +42,9 @@ const value = computed({
 <style scoped>
 input {
   width: 400px;
+}
+
+label {
+  color: aliceblue;
 }
 </style>

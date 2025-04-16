@@ -1,24 +1,18 @@
 <script setup>
-import {defineModel} from 'vue';
-import ChevronLeft from '@/components/icons/ChevronLeft.vue';
-import ChevronRight from '@/components/icons/ChevronRight.vue';
+import { defineModel } from "vue";
+import ChevronLeft from "@/components/icons/ChevronLeft.vue";
+import ChevronRight from "@/components/icons/ChevronRight.vue";
 
 const pageNumber = defineModel();
 </script>
 
 <template>
   <div class="pager">
-    <button
-      @click="pageNumber--"
-    >
+    <button @click="pageNumber--">
       <ChevronLeft />
     </button>
-    <span>
-      Page {{ pageNumber }}
-    </span>
-    <button
-      @click="pageNumber++"
-    >
+    <span> Page {{ pageNumber }} </span>
+    <button @click="pageNumber++">
       <ChevronRight />
     </button>
   </div>
@@ -28,12 +22,14 @@ const pageNumber = defineModel();
 .pager {
   display: flex;
   justify-content: center;
+  color: aliceblue;
   font-size: 1.5rem;
 }
 
 button {
   background: none;
   border: none;
+  color: aliceblue;
   cursor: pointer;
   font-size: inherit;
 }
