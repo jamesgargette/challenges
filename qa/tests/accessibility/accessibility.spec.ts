@@ -1,15 +1,24 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-test.describe("homepage", () => {
-  // 2
-  test("should not have any automatically detectable accessibility issues", async ({
-    page,
-  }) => {
-    await page.goto("/");
+test.beforeEach(async ({ page }) => {
+  await page.goto("/");
+});
 
-    const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
+test("should not have any automatically detectable accessibility issues", async ({
+  page,
+}) => {
+  const books = page.locator("a.book");
 
-    expect(accessibilityScanResults.violations).toEqual([]);
-  });
+  await expect(books).toHaveCount(12, { timeout: 5000 });
+
+  const count = await books.count();
+  expect(count).toBe(12);
+
+  await page.screenshot({ path: "screenshot.png" });
+  await page.waitForSelector("h1");
+
+  const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
+
+  expect(accessibilityScanResults.violations).toEqual([]);
 });
