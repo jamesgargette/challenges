@@ -10,8 +10,6 @@ test.describe("homepage", () => {
 
     const accessibilityScanResults = await new AxeBuilder({ page }).analyze();
 
-    await page.screenshot({ path: "screenshot.png" });
-
     expect(accessibilityScanResults.violations).toEqual([]);
   });
 });
