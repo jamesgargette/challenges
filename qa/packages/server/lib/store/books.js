@@ -38,5 +38,4 @@ class BookStore {
     return this.#books[id];
   }
 }
-
-export const BOOK_STORE = new BookStore(BOOKS);
+export const BOOK_STORE = await BookStore.create();
